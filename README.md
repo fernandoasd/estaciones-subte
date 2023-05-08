@@ -23,7 +23,7 @@ Mayo 2023
 ***
 Estas instrucciones te permitirán comprender el funcionamiento del proyecto. Además, se incluye el enlace hacia TinkerCad para poder ver el proyecto armado con sus distintos componentes y poner el código en ejecución. 
 
-[Link del proyecto en www.tinkercad.com](https://www.google.com)
+[Link del proyecto en Tinkercad ](https://www.tinkercad.com/things/11JbVPn2ngt "Enlace del proyecto en Tinkercad")
 
 ## Consigna 🔩
 
@@ -253,143 +253,37 @@ void loop()
 
 ## Parámetros de la función:
  ~~~ C
- void changeStatusDelay(int nombreLed1,
-                       int nombreLed2,
-                       int piezoStatus,
-                      int timer)
+ 
  ~~~
-- nombreLed1, nombreLed2:  
-pares de leds a encender / apagar 
-- piezoStatus:  
-2 = sonido alto cada 1 seg  
-1 = sonido bajo cada 2 seg  
-0 = sin sonido
-- timer:  
-tiempo dado en milisegundos en el que los leds permanecen encendidos
+
 
 ## Hardcodeo interno de la función:
  ~~~ C
-  int prendido_alto = 400;
-  int apagado_alto = 600;
-  int prendido_bajo = 1000;
-  int apagado_bajo = 1000;
-  unsigned long tiempo1 = 0;
-  unsigned long tiempo2 = 0;
-  long lapseTime = 0;
+  
  ~~~
 
-Estas variables marcan los tiempos (en milisegundos) de permanencia cada estado (prendidos y apagado) de 
-los sonidos altos y bajos:
-
-- int prendido_alto = 400  
-milisegundos en el que el sonido alto esta encendido
-- int apagado_alto = 600  
-milisegundos en el que el sonido alto esta apagado
-- int prendido_bajo = 1000  
-milisegundos en el que el sonido bajo esta encendido
-- int apagado_bajo = 1000  
-milisegundos en el que el sonido bajo esta apagado  
-##### Obs: Si se quieren modificar estos tiempos, se debe modificar la función (para este pequeño proyecto no es necesario parametrizarlos).  
 
 
 ## Cuerpo de la función:
 ~~~ C
-  digitalWrite(nombreLed1, 1);
-  digitalWrite(nombreLed2, 1);
-  lapseTime = 0;
-  tiempo1 = millis();
+ 
 ~~~
-##### Obs: digitalWrite(nombreled1, 1) es una función de de la librería de Arduino. El primer parámero esta asociado a un pin de la placa de arduino, el segundo, energiza (1 o HIGH) o apaga el mismo (0 o LOW).
-- Por lo tanto en nuestra función los dos digitalWrite energizan los leds conectados a los puertos asociados a nombreLed1 y nombreLed2.
-- A continuación setea el lapseTime en cero.
-- Luego la función millis() guarda el tiempo de desde que se inició el programa en la variable tiempo1.
 
-#### Dependiendo del valor de piezoStatus se abre un `if` que dependiendo del valor de `piezoStatus` se ejecutan 3 ciclos `while`:
 
-### Si `piezoStatus == 2 `:
-~~~ C
-if (piezoStatus == 2)
- {
-     while (lapseTime < timer )
-    {
-      digitalWrite(ALTO, 1);
-      delay(prendido_alto);
-      digitalWrite(ALTO, 0);
-      delay(apagado_alto);
-      tiempo2 = millis();
-      lapseTime = (tiempo2 - tiempo1);
-      
-    }
- }
-~~~
-- Comienza ciclo while para el ***sonido alto***:   
-    - Prende y apaga el sonido alto una vez por ciclo, con los tiempos configurados al principio de la función.
-    - Luego, en la variable tiempo2 se guarda el tiempo actual de ejecucion del programa.  
-    - Se calcula la diferencia de tiempo entre tiempo2 y tiempo1 y se guarda en la variable lapseTime.  
-     -Si ese lapso de tiempo es inferior al timer establecido como argumento `lapseTime < timer` se vuelve a inicar el ciclo hasta dejar de cumplir la condición del while.
 
-### Si `piezoStatus = 1`:
-~~~ C
- else
- {
-    if (piezoStatus == 1)
-    {
-       while ( lapseTime < timer )
-      {
-        digitalWrite(BAJO, 1);
-        delay(prendido_bajo);
-        digitalWrite(BAJO, 0);
-        delay(apagado_bajo);
-        digitalWrite(BAJO, 1);
-        delay(prendido_bajo);
-        digitalWrite(BAJO, 0);
-        delay(apagado_bajo);
-        digitalWrite(BAJO, 1);
-        delay(prendido_bajo);
-        digitalWrite(BAJO, 0);
-        tiempo2 = millis();
-        lapseTime = (tiempo2 - tiempo1);
-        
-      }
-    }
-~~~
-- Comienza otro ciclo while para el ***sonido bajo***:   
-    - Es similar al ciclo anterior,  pero prende y apaga el sonido bajo 3 veces por ciclo.
-    - Luego el control de tioempo es igual que en caso anterior.
-
-### Si `piezoStatus = 0`:
-~~~ C
-else
-     {
-       if (piezoStatus == 0)
-       {
-         delay(timer);
-       }
-     }
-   }
-~~~
-- Caso ***sin sonido***:   
-    -  Simplemente ejecuta el timer u cierra la llave del primer if.
 
 ### Pie de la función:
 ~~~ C
-    digitalWrite(ALTO, 0);
-    digitalWrite(BAJO, 0);
-    digitalWrite(nombreLed1, 0);
-    digitalWrite(nombreLed2, 0);
-  }
+  
 ~~~
-- Sin importar el valor del parametro `piezoStatus`
-    siempre se ejecuta el siguiente algoritmo al final de la función (estan fuera del primer `if`):
-    - Apaga el sonido y apaga y el apr de leds.
-    - La ultima llave indica el cierre de la función.
+
 
 
 
 ## 🤖 Link al proyecto 
 ---
 
- Proyecto [Semáforo Adaptado ](https://www.tinkercad.com/things/8oHwzMKlTXf-dojo-1-semaforo-adaptado-v1/editel?sharecode=JPbVYoZY0ViAlwjupwjPqmmHtwbsWOnT7YtB-P6JKZs "Enlace del proyecto en Tinkercad") TinkerCad.
+ Proyecto [Estaciones de subte ](https://www.tinkercad.com/things/11JbVPn2ngt "Enlace del proyecto en Tinkercad") TinkerCad.
  - - - 
 
 ##  📘 Fuentes

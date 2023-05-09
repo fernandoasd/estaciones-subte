@@ -24,15 +24,11 @@ Materia: SPD
 #define PULSADOR 14
 #define BUZZER 15
 
-
-
-
 //timer segmentos del display:
 int tiempo1 = 100; 
 
 //Tiempo de permanencia en estacion = tiempo de viaje
 int tiempo2 = 1000; 
-
 
 void setup()
 {
@@ -101,11 +97,11 @@ void control_leds(int led)
 
 void control_buzzer ()
 {
-  Serial.println("BOZZER ON");
+  Serial.println("BUZZER ON");
   digitalWrite(BUZZER, 1);
 }
 
-void control_display (int numero, int tiempo1, int tiempo2 )
+void control_estaciones (int numero, int tiempo1, int tiempo2 )
 {
   control_leds(numero);
   switch(numero)
@@ -211,8 +207,8 @@ void loop()
       Serial.println("BUEN VIAJE!!!\n");
       for (int i = 3; i > -1; i--)
     {
-      	control_display(i, tiempo1, tiempo2);
+      	control_estaciones(i, tiempo1, tiempo2);
     }
-    Serial.println("\nESTACION MORENO - LLEGASTE A DESTINO\n");
+    Serial.println("\nESTACION MORENO - FINAL DEL RECORRIDO\n");
   }
 }

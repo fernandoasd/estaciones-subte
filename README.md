@@ -368,7 +368,7 @@ delay(tiempo2);
 }
 ~~~
 - Si se presiona el pulsador da comiendo al viaje:   
-    - Anuncia por monitor serial el inicio del viaje.
+    - Se anuncia por monitor serial el inicio del viaje.
     - Inicia un contador del 3 al 0 y lo usa como parámetro para la función principal `control_estaciones()` dando por comienzo a la simulación.  
     - El monitor serial anuncia el fin del recorrido.
 

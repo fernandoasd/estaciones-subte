@@ -110,8 +110,8 @@ void off_all()
 
 void turn_on_one_by_one(int numero, int timer1)
 {
-  digitalWrite(numero, 1);
-  delay(timer1);
+    digitalWrite(numero, 1);
+    delay(timer1);
 }
 
 void control_leds(int led)
@@ -123,7 +123,7 @@ void control_leds(int led)
     Serial.println("Estacion Constitucion");
     	digitalWrite(R1, 1);
     	break;
-    case 2:
+   	case 2:
     	Serial.println("Estacion San Juan");
     	digitalWrite(Y1, 1);
     	break;
@@ -162,14 +162,14 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     case 1:
     	Serial.println("DISPLAY 1");
     	turn_on_one_by_one(B, tiempo1);
-      turn_on_one_by_one(C, tiempo1);
+        turn_on_one_by_one(C, tiempo1);
     	break;
     
     case 2:
     	Serial.println("DISPLAY 2");
     	turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(B, tiempo1);
-   	  turn_on_one_by_one(G, tiempo1);
+        turn_on_one_by_one(B, tiempo1);
+   		turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(E, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
@@ -177,25 +177,24 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     case 3:
     	Serial.println("DISPLAY 3");
     	turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(B, tiempo1);
-   	  turn_on_one_by_one(G, tiempo1);
+        turn_on_one_by_one(B, tiempo1);
+   		turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
-
     case 4:
     	Serial.println("DISPLAY 4");
     	turn_on_one_by_one(F, tiempo1);
-      turn_on_one_by_one(G, tiempo1);
-   	  turn_on_one_by_one(B, tiempo1);
+        turn_on_one_by_one(G, tiempo1);
+   		turn_on_one_by_one(B, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	break;
     
     case 5:
     	Serial.println("DISPLAY 5");
     	turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(F, tiempo1);
-   	  turn_on_one_by_one(G, tiempo1);
+        turn_on_one_by_one(F, tiempo1);
+   		turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
@@ -203,7 +202,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     case 6:
     	Serial.println("DISPLAY 6");
     	turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(F, tiempo1);
+        turn_on_one_by_one(F, tiempo1);
     	turn_on_one_by_one(E, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
@@ -213,19 +212,19 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     case 7:
     	Serial.println("DISPLAY 7");
     	turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(B, tiempo1);
+        turn_on_one_by_one(B, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	break;
     
     case 8:
-      Serial.println("DISPLAY 8");
-      turn_on_one_by_one(B, tiempo1);
-      turn_on_one_by_one(A, tiempo1);
-      turn_on_one_by_one(F, tiempo1);
-      turn_on_one_by_one(G, tiempo1);
-      turn_on_one_by_one(C, tiempo1);
-      turn_on_one_by_one(D, tiempo1);
-      turn_on_one_by_one(E, tiempo1);
+    	Serial.println("DISPLAY 8");
+        turn_on_one_by_one(B, tiempo1);
+    	turn_on_one_by_one(A, tiempo1);
+        turn_on_one_by_one(F, tiempo1);
+        turn_on_one_by_one(G, tiempo1);
+        turn_on_one_by_one(C, tiempo1);
+        turn_on_one_by_one(D, tiempo1);
+        turn_on_one_by_one(E, tiempo1);
     	break;
     
     case 9:
@@ -234,7 +233,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	turn_on_one_by_one(F, tiempo1);
     	turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(B, tiempo1);
-      turn_on_one_by_one(C, tiempo1);
+        turn_on_one_by_one(C, tiempo1);
     	break;
 
   }

@@ -169,7 +169,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	Serial.println("DISPLAY 2");
     	turn_on_one_by_one(A, tiempo1);
       turn_on_one_by_one(B, tiempo1);
-   		turn_on_one_by_one(G, tiempo1);
+   	turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(E, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
@@ -178,7 +178,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	Serial.println("DISPLAY 3");
     	turn_on_one_by_one(A, tiempo1);
       turn_on_one_by_one(B, tiempo1);
-   		turn_on_one_by_one(G, tiempo1);
+   	turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
@@ -186,7 +186,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	Serial.println("DISPLAY 4");
     	turn_on_one_by_one(F, tiempo1);
       turn_on_one_by_one(G, tiempo1);
-   		turn_on_one_by_one(B, tiempo1);
+   	turn_on_one_by_one(B, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	break;
     
@@ -194,7 +194,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	Serial.println("DISPLAY 5");
     	turn_on_one_by_one(A, tiempo1);
       turn_on_one_by_one(F, tiempo1);
-   		turn_on_one_by_one(G, tiempo1);
+   	turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;

@@ -67,15 +67,11 @@ RESISTENCIAS NECESARIAS PARA CADA COMPONENTE.
 #define PULSADOR 14
 #define BUZZER 15
 
-
-
-
 //timer segmentos del display:
 int tiempo1 = 100; 
 
 //Tiempo de permanencia en estacion = tiempo de viaje
 int tiempo2 = 1000; 
-
 
 void setup()
 {

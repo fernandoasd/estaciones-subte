@@ -1,7 +1,7 @@
 # 📋 Documentación de DOJO Nº2 SPD Div. 1º G. UTN FRA Grupo Nº 5.  
 
-Prototipo de sistema que permita al usuario saber a qué estación de subte está
-llegando realizado en Arduino. Trabajo practico nº 2 de materia SPD, Tecnicatura en Programación UTN FRA.
+Sistema programado en Arduino que indica al usuario de subterraneo la ubicación y la cantidad de estaciones que faltan para llegar a destino.  
+ Trabajo práctico Nº 2 de la materia `SPD - Tecnicatura en Programación UTN FA`.  
 Mayo 2023
 
 ![Imagen no encontrada](./img/ArduinoTinkercad.jpg "banner Intercad")
@@ -21,7 +21,15 @@ Mayo 2023
 
 ## Comenzando 🚀
 ***
-Estas instrucciones te permitirán comprender el funcionamiento del proyecto. Además, se incluye el enlace hacia TinkerCad para poder ver el proyecto armado con sus distintos componentes y poner el código en ejecución. 
+En este proyecto simula un viaje en la línea C del subterraneo de Buenos Aires,  desde la estación Constitución hasta la de Moreno:
+- Al presionar el pulsador da por comienzo la simulación.
+- El sistema consta de 3 indicadores:   
+  - Luces leds que indican la estación en donde se encuentra el pasajero.  
+  - En el display se muestran la cantidad de estaciones faltantes para llegar hasta destino.
+  - Una señal sonora (buzzer) indica que el subterraneo llega a una estación. 
+ 
+
+Las siguientes instrucciones te permitirán comprender el funcionamiento del proyecto. Además, se incluye el enlace del proyecto en TinkerCad para poder copiarlo y modificarlo: 
 
 [Link del proyecto en Tinkercad ](https://www.tinkercad.com/things/11JbVPn2ngt "Enlace del proyecto en Tinkercad")
 
@@ -40,7 +48,7 @@ Para realizar el proyecto deberán usar mínimamente:
 1 BOTÓN  
 RESISTENCIAS NECESARIAS PARA CADA COMPONENTE.
 
-## Función principal 🔩
+## Código del programa: 🔩
 
 * * *
 
@@ -136,7 +144,7 @@ void control_buzzer ()
   digitalWrite(BUZZER, 1);
 }
 
-void control_display (int numero, int tiempo1, int tiempo2 )
+void control_estaciones (int numero, int tiempo1, int tiempo2 )
 {
   control_leds(numero);
   switch(numero)
@@ -242,40 +250,128 @@ void loop()
       Serial.println("BUEN VIAJE!!!\n");
       for (int i = 3; i > -1; i--)
     {
-      	control_display(i, tiempo1, tiempo2);
+      	control_estaciones(i, tiempo1, tiempo2);
     }
-    Serial.println("\nESTACION MORENO - LLEGASTE A DESTINO\n");
+    Serial.println("\nESTACION MORENO - FINAL DEL RECORRIDO\n");
   }
 }
  ~~~
 
-# Explicación de la Función principal.
+# Explicación de la Función principal `control_estaciones()`.
 
 ## Parámetros de la función:
  ~~~ C
- 
+ void control_estaciones (int numero,
+                      int tiempo1,
+                      int tiempo2 )
  ~~~
 
+- numero:  
+Es el número que aparecerá en el display.
+- tiempo1:  
+Es el tiempo dado en milisegundos en que tarda en encender cada segmento del display (por lo que los segmentos se encienden secuencialmente, en un cierto orden establecido en el cuerpo de la función, hasta completar el número)
+- tiempo2:  
+tiempo dado en milisegundos en el número indicado en el display permanece encendido y luego apagado.  
 
-## Hardcodeo interno de la función:
+##### Obs: Estas variables estan declaradas con los valores:
+  -tiempo1 = 100  
+  -tiempo2 = 1000
+
+## Lamado a la funcion control_leds():
  ~~~ C
-  
+  control_leds(numero);
  ~~~
 
+Esta función llama a la funcion `control_buzze()`, esta enciende el buzzer.  
+Luego enciende los leds indicadores de la `estación` dependindo del parámetro y lo indica por monitor serial, si:
+
+- numero = 3  
+ estacion `Constitución`
+- numero = 3    
+estacion `San Juan`
+- numero = 1    
+estacion `Independencia`
+- numero = 0    
+estacion `Moreno`  
 
 
-## Cuerpo de la función:
+## switch(numero):
 ~~~ C
- 
+  switch(numero)
+  {
+    case 0:
+    	Serial.println("DISPLAY 0");
+    	turn_on_one_by_one(F, tiempo1);
+    	turn_on_one_by_one(E, tiempo1);
+    	turn_on_one_by_one(D, tiempo1);
+    	turn_on_one_by_one(C, tiempo1);
+    	turn_on_one_by_one(B, tiempo1);
+        turn_on_one_by_one(A, tiempo1);
+        break;
+    
+    case 1:
+    	Serial.println("DISPLAY 1");
+    	turn_on_one_by_one(B, tiempo1);
+        turn_on_one_by_one(C, tiempo1);
+    	break;
+    
+    case 2:
+    	Serial.println("DISPLAY 2");
+    	turn_on_one_by_one(A, tiempo1);
+        turn_on_one_by_one(B, tiempo1);
+   		turn_on_one_by_one(G, tiempo1);
+    	turn_on_one_by_one(E, tiempo1);
+    	turn_on_one_by_one(D, tiempo1);
+    	break;
+
+      case 3:
+    	Serial.println("DISPLAY 3");
+    	turn_on_one_by_one(A, tiempo1);
+        turn_on_one_by_one(B, tiempo1);
+   		turn_on_one_by_one(G, tiempo1);
+    	turn_on_one_by_one(C, tiempo1);
+    	turn_on_one_by_one(D, tiempo1);
+    	break;
+      .
+      .
+      .
 ~~~
+##### Obs: El switch ejecuta hasta el case 9 (en el caso de que se agreguen mas estaciones en el futuro), pero en este proyecto se utiliza hasta el case 3.
+- Se enciende el display (del 0 al 9) y lo indica por consola serial: el numero indicado es el del parametro número (cada número se encenderá segmento a segmento en una secuencia predefinida).
 
 
-
-
-### Pie de la función:
+### Timer y apagado total:
 ~~~ C
-  
+delay(tiempo2);
+off_all ();
+delay(tiempo2);
+}
 ~~~
+- Se inicia un delay de 'tiempo2' milisegundos. Es el tiempo en que los leds, display y buzzer permanecen encendidos.  
+- Llama a la función `off_all()`, esta apago todo: leds, display y buzzer.
+- Luego se ejecuta otro timer. Este representa el tiempo en el que se apaga un numero y se enciende el siguiente.
+
+### void loop():
+~~~ C
+ void loop()
+{
+  int presiono = digitalRead(PULSADOR);
+  if (presiono == 1)
+  {
+      Serial.println("BUEN VIAJE!!!\n");
+      for (int i = 3; i > -1; i--)
+    {
+      	control_estaciones(i, tiempo1, tiempo2);
+    }
+    Serial.println("\nESTACION MORENO - LLEGASTE A DESTINO\n");
+  }
+}
+~~~
+- Si se presiona el pulsador da comiendo al viaje:   
+    - Anuncia por monitor serial el inicio del viaje.
+    - Inicia un contador del 3 al 0 y lo usa como parámetro para la función principal `control_estaciones()` dando por comienzo a la simulación.  
+    - El monitor serial anuncia el fin del recorrido.
+
 
 
 
@@ -288,7 +384,9 @@ void loop()
 
 ##  📘 Fuentes
 ---
-- [Tecnicatura Universitaria en Programación - UTN](http://www.sistemas-utnfra.com.ar/#/pages/carrera/tecnico-programacion/resumen)
+- [Tecnicatura Universitaria en Programación - UTN](http://www.sistemas-utnfra.com.ar/#/pages/carrera/tecnico-programacion/resumen).
+- [Pushing commits to a remote repository](https://docs.github.com/en/enterprise-server@3.5/get-started/using-git/pushing-commits-to-a-remote-repository "Use git push to push commits made on your local branch to a remote repository.").
+
 - [Consejos para documentar](https://www.sohamkamani.com/how-to-write-good-documentation/#architecture-documentation).
 
 - [Lenguaje Markdown](https://markdown.es/sintaxis-markdown/#linkauto).

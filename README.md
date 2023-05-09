@@ -156,8 +156,8 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
     	turn_on_one_by_one(D, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(B, tiempo1);
-      turn_on_one_by_one(A, tiempo1);
-      break;
+        turn_on_one_by_one(A, tiempo1);
+        break;
     
     case 1:
     	Serial.println("DISPLAY 1");
@@ -251,7 +251,7 @@ void loop()
       Serial.println("BUEN VIAJE!!!\n");
       for (int i = 3; i > -1; i--)
     {
-      control_estaciones(i, tiempo1, tiempo2);
+      	control_estaciones(i, tiempo1, tiempo2);
     }
     Serial.println("\nESTACION MORENO - FINAL DEL RECORRIDO\n");
   }
@@ -304,13 +304,13 @@ estacion `Moreno`
     case 1:
     	Serial.println("DISPLAY 1");
     	turn_on_one_by_one(B, tiempo1);
-        turn_on_one_by_one(C, tiempo1);
+      turn_on_one_by_one(C, tiempo1);
     	break;
     
     case 2:
     	Serial.println("DISPLAY 2");
     	turn_on_one_by_one(A, tiempo1);
-        turn_on_one_by_one(B, tiempo1);
+      turn_on_one_by_one(B, tiempo1);
    		turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(E, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
@@ -319,7 +319,7 @@ estacion `Moreno`
       case 3:
     	Serial.println("DISPLAY 3");
     	turn_on_one_by_one(A, tiempo1);
-        turn_on_one_by_one(B, tiempo1);
+      turn_on_one_by_one(B, tiempo1);
    		turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);

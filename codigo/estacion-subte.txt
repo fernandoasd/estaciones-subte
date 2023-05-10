@@ -48,7 +48,7 @@ void setup()
   Serial.begin(9600);
 }
 
-void off_all()
+void all_off()
 {
   digitalWrite(A, 0);
   digitalWrite(B, 0);
@@ -62,7 +62,7 @@ void off_all()
   digitalWrite(Y2, 0);
   digitalWrite(Y3, 0);
   digitalWrite(BUZZER, 0);
-  Serial.println("ALL AFF ---\n");
+  Serial.println("ALL OFF ---\n");
 }
 
 void turn_on_one_by_one(int numero, int timer1)
@@ -195,7 +195,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
 
   }
   delay(tiempo2);
-  off_all ();
+  all_off ();
   delay(tiempo2);
 }
 

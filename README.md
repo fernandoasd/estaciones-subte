@@ -91,7 +91,7 @@ void setup()
   Serial.begin(9600);
 }
 
-void off_all()
+void all_off()
 {
   digitalWrite(A, 0);
   digitalWrite(B, 0);
@@ -238,7 +238,7 @@ void control_estaciones (int numero, int tiempo1, int tiempo2 )
 
   }
   delay(tiempo2);
-  off_all ();
+  all_off ();
   delay(tiempo2);
 }
 
@@ -319,7 +319,7 @@ estacion `Moreno`
     	Serial.println("DISPLAY 3");
     	turn_on_one_by_one(A, tiempo1);
       turn_on_one_by_one(B, tiempo1);
-   	turn_on_one_by_one(G, tiempo1);
+   	<turn_on_one_by_one(G, tiempo1);
     	turn_on_one_by_one(C, tiempo1);
     	turn_on_one_by_one(D, tiempo1);
     	break;
@@ -334,12 +334,12 @@ estacion `Moreno`
 ### Timer y apagado total:
 ~~~ C
 delay(tiempo2);
-off_all ();
+all_off ();
 delay(tiempo2);
 }
 ~~~
 - Se inicia un delay de 'tiempo2' milisegundos. Es el tiempo en que los leds, display y buzzer permanecen encendidos.  
-- Llama a la función `off_all()`, esta apago todo: leds, display y buzzer.
+- Llama a la función `all_off()`, esta apago todo: leds, display y buzzer.
 - Luego se ejecuta otro timer. Este representa el tiempo en el que se apaga un numero y se enciende el siguiente.
 
 ### void loop():
